@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+html {
+    margin: 0%;
+}
+@media screen and (orientation: portrait) {
+    body {
+        width: 80%;
+        margin: 0 auto;
+    }
+}
+@keyframes rotation{
+    0%{ transform:rotate(0);}
+    100%{ transform:rotate(360deg); }
+}
+#loadingObj {
+    display : inline-block;
+    width : 15px;
+    height : 15px;
+    border-radius : 50%;
+    border-width : thick;
+    border-style : dotted;
+    border-color : black;
+    animation : 3s linear infinite rotation;
+}

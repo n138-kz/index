@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signin</title>
+
+    <!-- /* GoogleService */ -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfCHdcUAAAAAOwkHsW_7W7MfoOrvoIw9CXdLRBA"></script>
+    <script src="../lib/grecaptcha.js" id="grecaptchajs"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+        function onSignIn(googleUser) {
+            console.debug(googleUser);
+
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                console.debug(xhr.readyState)
+                document.querySelector('#g_oauth_output').innerHTML = '';
+
+                if ( xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300 ) {
+                    let responseText = xhr.responseText;
+                    console.debug( responseText );
+
+                    let response = JSON.parse(responseText);
+                    console.debug( response );
+
+                    sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.googleOAuth2', JSON.stringify({
+                        crd: googleUser.credential,
+                        cid: googleUser.client_id,
+                        iat: response.user.google.session.iat,
+                        exp: response.user.google.session.exp,
+                    }) );
+
+                } else if ( xhr.readyState === 4 ) {
+                    if (false) {
+                    } else if ( xhr.status >= 400 && xhr.status < 500 ) {
+                    } else if ( xhr.status >= 500 ) {
+                    } else {
+                    }
+                    console.error( [xhr,xhr.responseText,xhr.readyState,xhr.status,xhr.statusText] );
+
+                } else {
+                    console.debug( [xhr,xhr.responseText,xhr.readyState,xhr.status,xhr.statusText] );
+                }
+            }
+
+            sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.googleOAuth2', JSON.stringify({crd: googleUser.credential, cid: googleUser.client_id}) );
+            localStorage.setItem( (btoa(location.href)).slice(0, 16) + '.googleOAuth2', JSON.stringify({crd: googleUser.credential, cid: googleUser.client_id}) );
+            xhr.open( 'POST','./gsi-server.php' );
+            xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+            xhr.send(
+                'ts='+(Math.floor((new Date()).getTime()/1000))
+                + '&credential='+googleUser.credential
+                + '&client_id='+googleUser.client_id
+                + '&challenge='+sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.reCAPTCHA' )
+            );
+        }
+        sessionStorage.clear();
+
+    </script>
+    <!-- /* GoogleService */ -->
+
+    <link rel="stylesheet" href="../lib/style-body.css">
+    <style>
+        html {
+            background-color: black;
+        }
+        body>div {
+            margin: 30px auto;
+        }
+        form {
+            background-color: black;
+            color: lime;
+            font-size: 15pt;
+        }
+        form input {
+            background-color: transparent;
+            color: lime;
+            border: none;
+            width: 90%;
+            padding: 0 10px;
+            display: grid;
+            height: 18pt;
+        }
+        form input[type="password"] {
+            color: black;
+        }
+        #localAuthn_motd {
+            color: lime;
+        }
+        #localAuthn_userid {
+            display: none;
+        }
+        #localAuthn_passwd {
+            display: none;
+        }
+        #localAuthn_execute {
+            cursor: pointer;
+            display: none;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="../lib/toDateTimeString.js" id="grecaptchajs"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            setInterval(function () {
+                document.querySelector('#localAuthn_motd').innerHTML='';
+                document.querySelector('#localAuthn_motd').innerHTML+=toDateTimeString(new Date());
+                document.querySelector('#localAuthn_motd').innerHTML+='<br>';
+                document.querySelector('#localAuthn_motd').innerHTML+=(location.href+'?#').replace(/#.*/, '').replace(/\?.*/, '');
+            }, 500);
+            document.querySelector('#localAuthn_userid').style.display='grid';
+
+            document.querySelector('#localAuthn_userid input').addEventListener("keyup", event => {
+                console.log(event);
+                if( event.target.value.trim().length > 0 ) {
+                    document.querySelector('#localAuthn_passwd').style.display='grid';
+                } else {
+                    document.querySelector('#localAuthn_execute').style.display='none';
+                    document.querySelector('#localAuthn_passwd').style.display='none';
+                    document.querySelector('#localAuthn_passwd input').value='';
+                }
+            });
+
+            document.querySelector('#localAuthn_passwd input').addEventListener("keyup", event => {
+                console.log(event);
+                if( event.target.value.trim().length > 0 ) {
+                    document.querySelector('#localAuthn_execute').style.display='grid';
+                } else {
+                    document.querySelector('#localAuthn_execute').style.display='none';
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <div id="localAuthn_motd"></div>
+        <form action="" method="post">
+            <div id="localAuthn_userid">
+                Login: <input name="userid" type="text" autocomplete="username" placeholder="User-ID or E-Mail address" required>
+            </div>
+            <div id="localAuthn_passwd">
+                Password: <input name="passwd" type="password" autocomplete="current-password" placeholder="Password" required>
+            </div>
+            <div id="localAuthn_execute">
+                &lt;login&gt;
+            </div>
+        </form>
+    </div>
+    <div>
+        <div id="g_id_onload"
+            data-client_id="784669840257-i0a06p3o6g8k0k1tk26jj09li1q2acud.apps.googleusercontent.com"
+            data-login_uri="https://labs.n138.jp"
+            data-callback="onSignIn">
+        </div>
+        <div class="g_id_signin" data-type="standard" data-logo_alignment="left"></div>
+        <div id="g_oauth_output"></div>
+    </div>
+</body>
+</html>
