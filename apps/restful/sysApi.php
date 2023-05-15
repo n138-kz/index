@@ -52,7 +52,7 @@ class rest {
     }
 }
 
-if( $_SERVER['REQUEST_METHOD'] == 'get' ) {
-$rest = new rest();
-echo $rest->getEventUUID() . PHP_EOL;
+if( mb_strtolower( $_SERVER['REQUEST_METHOD']) == 'get' ) {
+    $rest = new rest();
+    echo $rest->getEventUUID() . PHP_EOL;
 }
