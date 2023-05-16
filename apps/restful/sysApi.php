@@ -28,6 +28,7 @@ class rest {
     function setErrorStatus($param=NULL) {
         $return = $param;
         if( is_null($return) ) { $return = !!!$this->result['on-error']; }
+        $this->result['on-error'] = $return;
         return $return;
     }
     function getTimeFormat($param, $timestamp=NULL) {
