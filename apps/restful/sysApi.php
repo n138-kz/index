@@ -77,5 +77,4 @@ if (FALSE) {
         }
         echo $rest->getRandomChr($params[0]);
     }
-    
 }
