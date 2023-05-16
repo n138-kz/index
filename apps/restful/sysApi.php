@@ -1,7 +1,7 @@
 <?php header('Content-Type: Application/json');
 date_default_timezone_set('Asia/Tokyo');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+/* CORS */header('Access-Control-Allow-Origin: *');
+/* CORS */header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
 
 class rest {
     private $result;
