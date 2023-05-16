@@ -33,7 +33,8 @@ class rest {
     function getTimeFormat($param, $timestamp=NULL) {
         $return = '';
         if (is_null($timestamp)) { $timestamp = time(); }
-        if ( is_int($param) && $param < 1 ) { $this->setErrorStatus(TRUE); }
+        $this->setErrorStatus(TRUE);
+        if ( is_int($param) && $param > 0 ) { $this->setErrorStatus(FALSE); }
 
         if (FALSE) {
         } elseif ( is_int($param) ) {
