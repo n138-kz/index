@@ -18,7 +18,6 @@ class rest {
         return $return;
     }
     function getTimeFormat($param) {
-        $this->result['issued_at'] = $this->getTimeFormat(28);
         $return = '';
 
         if (FALSE) {
