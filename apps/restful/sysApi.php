@@ -17,6 +17,13 @@ class rest {
         $return = json_encode($return, JSON_UNESCAPED_SLASHES );
         return $return;
     }
+    function setCustomText($param) {
+        $this->result['issued_at'] = $this->getTimeFormat(28);
+        $return = '';
+        $return = trim($param);
+        $this->result['generated']['text'] = $return;
+        return $return;
+    }
     function getTimeFormat($param, $timestamp=NULL) {
         $return = '';
         if (is_null($timestamp)) { $timestamp = time(); } 
@@ -129,8 +136,7 @@ if (FALSE) {
     }
 } else {
     http_response_code(405);
-    $rest->result['issued_at'] = $rest->getTimeFormat(28);
-    $rest->result['generated']['text'] = 'request method='.mb_strtolower( $_SERVER['REQUEST_METHOD'] );
+    $rest->setCustomText('request method='.mb_strtolower( $_SERVER['REQUEST_METHOD'] ));
     echo $rest->getResult();
     exit();
 }
