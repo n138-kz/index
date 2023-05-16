@@ -46,8 +46,11 @@ class rest {
         if (is_null($timestamp)) { $timestamp = time(); }
         $return = $timestamp;
 
-        if ( is_int($param) && $param & 1 ) {
+        if (false) {
+        } elseif ( is_int($param) && $param == 1 ) {
             $return = microtime(TRUE);
+        } elseif ( is_int($param) && $param == 2 ) {
+            $return = round($timestamp);
         }
         $this->result['generated']['text'] = $return;
         return $return;
