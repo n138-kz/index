@@ -77,4 +77,7 @@ if (FALSE) {
         }
         echo $rest->getRandomChr($params[0]);
     }
+} else {
+    http_response_code(400);
+    exit();
 }
