@@ -86,11 +86,11 @@ if (FALSE) {
         echo $rest->getResult();
     } elseif ( $_REQUEST['act'] == 'str.random.get' ) {
         $params = [0, 0];
-        if ( isset($_REQUEST['chr']) && is_numeric($_REQUEST['chr']) ) {
-            $params[1] = (int)$_REQUEST['chr'];
-        }
         if ( isset($_REQUEST['len']) && is_numeric($_REQUEST['len']) ) {
             $params[0] = (int)$_REQUEST['len'];
+        }
+        if ( isset($_REQUEST['chr']) && is_numeric($_REQUEST['chr']) ) {
+            $params[1] = (int)$_REQUEST['chr'];
         }
         $rest->getRandomStr($params[0], $params[1]);
         echo $rest->getResult();
