@@ -58,7 +58,8 @@ class rest {
         $return = str_replace('{month::hash}',       hash('crc32', $this->getTimeFormat('F'), false), $return);
         $return = str_replace('{timestamp::hash}',   hash('md5',   $this->getTimeFormat('U'), false), $return);
         $return = str_replace('{timestamp::encode}', base64_encode($this->getTimeFormat('U')       ), $return);
-        return json_encode($return, JSON_UNESCAPED_SLASHES );
+        $return = json_encode($return, JSON_UNESCAPED_SLASHES );
+        return $return;
     }
 }
 
