@@ -6,6 +6,9 @@ date_default_timezone_set('Asia/Tokyo');
 /* CACHE */header('Cache-Control: no-cache, no-store, no-transform, max-age=0');
 /* CACHE */header('Clear-Site-Data: *');
 /* LANGUAGE */header('Content-Language: ja-JP');
+/* SECURITY */header('Allow: GET, POST, HEAD');
+/* SECURITY */header('Server: Not Available');
+/* SECURITY */header_remove('X-Powered-By');
 
 class rest {
     private $result;
