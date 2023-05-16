@@ -58,6 +58,7 @@ if (FALSE) {
     $rest = new rest();
     if (FALSE) {
     } elseif (FALSE) {
+    } elseif ( ! isset( $_REQUEST['act'] ) ) {
     } elseif ( $_REQUEST['act'] == 'uuid.get' ) {
         echo $rest->getEventUUID();
     }
