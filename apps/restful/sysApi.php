@@ -75,10 +75,10 @@ class rest {
     }
 }
 
+$rest = new rest();
 if (FALSE) {
 } elseif (FALSE) {
 } elseif ( mb_strtolower( $_SERVER['REQUEST_METHOD'] ) == 'get' ) {
-    $rest = new rest();
     if (FALSE) {
     } elseif (FALSE) {
     } elseif ( ! isset( $_REQUEST['act'] ) ) {
