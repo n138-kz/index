@@ -2,6 +2,16 @@
 date_default_timezone_set('Asia/Tokyo');
 
 class rest {
+    private $result;
+    function __construct() {
+        $this->result = [
+            'issued_at' => $this->getTimeFormat(28),
+            'generated' => [
+                'text' => '',
+                'blob' => '',
+            ],
+        ]
+    }
     function getTimeFormat($param) {
         $return = '';
 
