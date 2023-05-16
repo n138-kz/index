@@ -85,7 +85,7 @@ class rest {
         $return = str_replace('{year::hash:crc32}',      hash('crc32', $this->getTimeFormat('Y'), false), $return);
         $return = str_replace('{month::hash:crc32}',     hash('crc32', $this->getTimeFormat('F'), false), $return);
         $return = str_replace('{timestamp::hash:md5}',   hash('md5',   $this->getTimeFormat('U'), false), $return);
-        $return = str_replace('{timestamp::hash:crc32}', hash('crc32', microtime(true)          , false), $return);
+        $return = str_replace('{timestamp::hash:crc32}', hash('crc32', microtime(true)**2       , false), $return);
         $this->result['generated']['text'] = $return;
         return $return;
     }
