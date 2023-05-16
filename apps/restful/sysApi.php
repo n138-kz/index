@@ -106,6 +106,8 @@ if (FALSE) {
     if (FALSE) {
     } elseif (FALSE) {
     } elseif ( ! isset( $_REQUEST['act'] ) ) {
+        http_response_code(400);
+        exit();
     } elseif ( $_REQUEST['act'] == 'datetime.format.get' ) {
         $params = [
             'format' => 0,
