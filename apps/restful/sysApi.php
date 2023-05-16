@@ -129,5 +129,7 @@ if (FALSE) {
     }
 } else {
     http_response_code(405);
+    $this->result['issued_at'] = $this->getTimeFormat(28);
+    $this->result['generated']['text'] = 'request method='.mb_strtolower( $_SERVER['REQUEST_METHOD'] );
     exit();
 }
