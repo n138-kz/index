@@ -10,6 +10,7 @@ class rest {
                 'text' => '',
                 'blob' => '',
             ],
+            'on-error' => FALSE,
         ];
     }
     function getResult() {
