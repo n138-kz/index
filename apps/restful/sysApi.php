@@ -17,20 +17,20 @@ class rest {
         $return = json_encode($return, JSON_UNESCAPED_SLASHES );
         return $return;
     }
-    function getTimeFormat($param) {
+    function getTimeFormat($param, $timestamp=time()) {
         $return = '';
 
         if (FALSE) {
         } elseif ( is_int($param) ) {
-            if ( $param &  16 ) { $return .= ' ' . date('Y/m/d'); }
-            if ( $param &   8 ) { $return .= ' ' . date('H:i:s'); }
-            if ( $param &   4 ) { $return .= ' ' . date('T'); }
-            if ( $param &   2 ) { $return .= ' ' . date('O'); }
-            if ( $param &   1 ) { $return .= ' ' . date('U'); }
+            if ( $param &  16 ) { $return .= ' ' . date('Y/m/d', $timestamp); }
+            if ( $param &   8 ) { $return .= ' ' . date('H:i:s', $timestamp); }
+            if ( $param &   4 ) { $return .= ' ' . date('T', $timestamp); }
+            if ( $param &   2 ) { $return .= ' ' . date('O', $timestamp); }
+            if ( $param &   1 ) { $return .= ' ' . date('U', $timestamp); }
         } elseif ( ( ord(mb_substr($param, 0, 1)) >= ord('a') ) && ( ord(mb_substr($param, 0, 1)) <= ord('z') ) ) {
-            $return .= ' ' . date(mb_substr($param, 0, 1));
+            $return .= ' ' . date(mb_substr($param, 0, 1), $timestamp);
         } elseif ( ( ord(mb_substr($param, 0, 1)) >= ord('A') ) && ( ord(mb_substr($param, 0, 1)) <= ord('Z') ) ) {
-            $return .= ' ' . date(mb_substr($param, 0, 1));
+            $return .= ' ' . date(mb_substr($param, 0, 1), $timestamp);
         }
 
         $return = trim($return);
@@ -81,6 +81,24 @@ if (FALSE) {
     if (FALSE) {
     } elseif (FALSE) {
     } elseif ( ! isset( $_REQUEST['act'] ) ) {
+    } elseif ( $_REQUEST['act'] == 'datetime.format.get' ) {
+        $params = [
+            'format' => 0,
+            'datetime' => time(),
+        ];
+        if ( isset($_REQUEST['format']) && is_numeric($_REQUEST['format']) ) {
+            $params['format'] = (int)$_REQUEST['format'];
+        }
+        if ( isset($_REQUEST['datetime']) ) {
+            try {
+                $params['datetime'] = (int)strtotime($_REQUEST['datetime']);
+            } catch (\Exception $e) {
+                error_log($e->getMessage());
+                $params['datetime'] = time();
+            }
+        }
+        $rest->getTimeFormat($params['format'], $params['datetime']);
+        echo $rest->getResult();
     } elseif ( $_REQUEST['act'] == 'uuid.get' ) {
         $rest->getEventUUID();
         echo $rest->getResult();
