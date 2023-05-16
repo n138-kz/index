@@ -80,6 +80,7 @@ class rest {
         return $return;
     }
     function getEventUUID() {
+        usleep(1);
         $this->result['issued_at'] = $this->getTimeFormat(28);
         $return = '{year::hash:crc32}-{month::hash:crc32}-{timestamp::hash:md5}-{timestamp::hash:crc32}';
         $return = str_replace('{year::hash:crc32}',      hash('crc32', $this->getTimeFormat('Y'),          false), $return);
