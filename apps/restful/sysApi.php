@@ -79,7 +79,8 @@ if (FALSE) {
     } elseif (FALSE) {
     } elseif ( ! isset( $_REQUEST['act'] ) ) {
     } elseif ( $_REQUEST['act'] == 'uuid.get' ) {
-        echo $rest->getEventUUID();
+        $rest->getEventUUID();
+        echo $rest->getResult();
     } elseif ( $_REQUEST['act'] == 'str.random.get' ) {
         $params = [0, 0];
         if ( isset($_REQUEST['chr']) && is_numeric($_REQUEST['chr']) ) {
@@ -88,13 +89,15 @@ if (FALSE) {
         if ( isset($_REQUEST['len']) && is_numeric($_REQUEST['len']) ) {
             $param2 = (int)$_REQUEST['len'];
         }
-        echo $rest->getRandomStr($params[0], $params[1]);
+        $rest->getRandomStr($params[0], $params[1]);
+        echo $rest->getResult();
     } elseif ( $_REQUEST['act'] == 'chr.random.get' ) {
         $params = [0];
         if ( isset($_REQUEST['chr']) && is_numeric($_REQUEST['chr']) ) {
             $params[0] = (int)$_REQUEST['chr'];
         }
-        echo $rest->getRandomChr($params[0]);
+        $rest->getRandomChr($params[0]);
+        echo $rest->getResult();
     } else {
         http_response_code(400);
         exit();
