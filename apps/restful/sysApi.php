@@ -53,11 +53,11 @@ class rest {
         $this->result['generated']['text'] = $return;
         return $return;
     }
-    function getRandomStr($len=5, $type=0) {
+    function getRandomStr($len=5, $chr=0) {
         $this->result['issued_at'] = $this->getTimeFormat(28);
         $return = '';
         while (mb_strlen($return)<$len) {
-            $return .= $this->getRandomChr($type);
+            $return .= $this->getRandomChr($chr);
         }
         $this->result['generated']['text'] = $return;
         return $return;
