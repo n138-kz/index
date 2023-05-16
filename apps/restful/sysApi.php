@@ -2,6 +2,9 @@
 date_default_timezone_set('Asia/Tokyo');
 /* CORS */header('Access-Control-Allow-Origin: *');
 /* CORS */header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+/* CACHE */header('Age: 0');
+/* CACHE */header('Cache-Control: no-cache, no-store, no-transform, max-age=0');
+/* CACHE */header('Clear-Site-Data: *');
 
 class rest {
     private $result;
