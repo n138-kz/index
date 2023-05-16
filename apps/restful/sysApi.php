@@ -147,7 +147,5 @@ if (FALSE) {
     }
 } else {
     http_response_code(405);
-    $rest->setCustomText('request method='.mb_strtolower( $_SERVER['REQUEST_METHOD'] ));
-    echo $rest->getResult();
     exit();
 }
