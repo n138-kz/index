@@ -85,14 +85,17 @@ if (FALSE) {
         $rest->getEventUUID();
         echo $rest->getResult();
     } elseif ( $_REQUEST['act'] == 'str.random.get' ) {
-        $params = [0, 0];
+        $params = [
+            'chr' => 0,
+            'len' => 0,
+        ];
         if ( isset($_REQUEST['len']) && is_numeric($_REQUEST['len']) ) {
-            $params[0] = (int)$_REQUEST['len'];
+            $params['len'] = (int)$_REQUEST['len'];
         }
         if ( isset($_REQUEST['chr']) && is_numeric($_REQUEST['chr']) ) {
-            $params[1] = (int)$_REQUEST['chr'];
+            $params['chr'] = (int)$_REQUEST['chr'];
         }
-        $rest->getRandomStr($params[0], $params[1]);
+        $rest->getRandomStr($params['len'], $params['chr']);
         echo $rest->getResult();
     } elseif ( $_REQUEST['act'] == 'chr.random.get' ) {
         $params = [0];
