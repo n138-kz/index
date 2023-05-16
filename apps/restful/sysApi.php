@@ -27,7 +27,7 @@ class rest {
     }
     function getTimeFormat($param, $timestamp=NULL) {
         $return = '';
-        if (is_null($timestamp)) { $timestamp = time(); } 
+        if (is_null($timestamp)) { $timestamp = time(); }
 
         if (FALSE) {
         } elseif ( is_int($param) ) {
