@@ -52,5 +52,30 @@ class rest {
     }
 }
 
-$rest = new rest();
-echo $rest->getEventUUID() . PHP_EOL;
+if (FALSE) {
+} elseif (FALSE) {
+} elseif ( mb_strtolower( $_SERVER['REQUEST_METHOD'] ) == 'get' ) {
+    $rest = new rest();
+    if (FALSE) {
+    } elseif (FALSE) {
+    } elseif ( ! isset( $_REQUEST['act'] ) ) {
+    } elseif ( $_REQUEST['act'] == 'uuid.get' ) {
+        echo $rest->getEventUUID();
+    } elseif ( $_REQUEST['act'] == 'str.random.get' ) {
+        $params = [0, 0];
+        if ( isset($_REQUEST['chr']) && is_numeric($_REQUEST['chr']) ) {
+            $param1 = (int)$_REQUEST['chr'];
+        }
+        if ( isset($_REQUEST['len']) && is_numeric($_REQUEST['len']) ) {
+            $param2 = (int)$_REQUEST['len'];
+        }
+        echo $rest->getRandomStr($params[0], $params[1]);
+    } elseif ( $_REQUEST['act'] == 'chr.random.get' ) {
+        $params = [0];
+        if ( isset($_REQUEST['chr']) && is_numeric($_REQUEST['chr']) ) {
+            $params[0] = (int)$_REQUEST['chr'];
+        }
+        echo $rest->getRandomChr($params[0]);
+    }
+    
+}
