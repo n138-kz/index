@@ -13,6 +13,7 @@ class rest {
         ]
     }
     function getTimeFormat($param) {
+        $this->result['issued_at'] = $this->getTimeFormat(28);
         $return = '';
 
         if (FALSE) {
@@ -32,6 +33,7 @@ class rest {
         return $return;
     }
     function getRandomChr($param=0) {
+        $this->result['issued_at'] = $this->getTimeFormat(28);
         $return = [];
         if ( $param &   8 ) { array_push( $return, chr( random_int(ord('a'), ord('z')) ) ); }
         if ( $param &   4 ) { array_push( $return, chr( random_int(ord('A'), ord('Z')) ) ); }
@@ -42,6 +44,7 @@ class rest {
         return $return;
     }
     function getRandomStr($len=5, $type=0) {
+        $this->result['issued_at'] = $this->getTimeFormat(28);
         $return = '';
         while (mb_strlen($return)<$len) {
             $return .= $this->getRandomChr($type);
