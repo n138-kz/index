@@ -50,11 +50,11 @@ class rest {
     }
     function getEventUUID() {
         $this->result['issued_at'] = $this->getTimeFormat(28);
-        $return['generated'] = '{year::hash}-{month::hash}-{timestamp::hash}-{timestamp::encode}';
-        $return['generated'] = str_replace('{year::hash}', hash('crc32', $this->getTimeFormat('Y'), false), $return['generated']);
-        $return['generated'] = str_replace('{month::hash}', hash('crc32', $this->getTimeFormat('F'), false), $return['generated']);
-        $return['generated'] = str_replace('{timestamp::hash}', hash('md5', $this->getTimeFormat('U'), false), $return['generated']);
-        $return['generated'] = str_replace('{timestamp::encode}', base64_encode($this->getTimeFormat('U')), $return['generated']);
+        $return = '{year::hash}-{month::hash}-{timestamp::hash}-{timestamp::encode}';
+        $return = str_replace('{year::hash}',        hash('crc32', $this->getTimeFormat('Y'), false), $return);
+        $return = str_replace('{month::hash}',       hash('crc32', $this->getTimeFormat('F'), false), $return);
+        $return = str_replace('{timestamp::hash}',   hash('md5',   $this->getTimeFormat('U'), false), $return);
+        $return = str_replace('{timestamp::encode}', base64_encode($this->getTimeFormat('U')       ), $return);
         return json_encode($return, JSON_UNESCAPED_SLASHES );
     }
 }
