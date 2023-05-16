@@ -30,6 +30,7 @@ class rest {
         }
 
         $return = trim($return);
+        $this->result['generated']['text'] = $return;
         return $return;
     }
     function getRandomChr($param=0) {
@@ -41,6 +42,7 @@ class rest {
         if ( $param &   1 ) { array_push( $return, chr( random_int(ord('!'), ord('/')) ) ); }
 
         $return = $return[random_int(0, count($return)-1)];
+        $this->result['generated']['text'] = $return;
         return $return;
     }
     function getRandomStr($len=5, $type=0) {
@@ -49,6 +51,7 @@ class rest {
         while (mb_strlen($return)<$len) {
             $return .= $this->getRandomChr($type);
         }
+        $this->result['generated']['text'] = $return;
         return $return;
     }
     function getEventUUID() {
@@ -59,6 +62,7 @@ class rest {
         $return = str_replace('{timestamp::hash}',   hash('md5',   $this->getTimeFormat('U'), false), $return);
         $return = str_replace('{timestamp::encode}', base64_encode($this->getTimeFormat('U')       ), $return);
         $return = json_encode($return, JSON_UNESCAPED_SLASHES );
+        $this->result['generated']['text'] = $return;
         return $return;
     }
 }
