@@ -25,9 +25,15 @@ class rest {
         $this->result['generated']['text'] = $return;
         return $return;
     }
+    function setErrorStatus($param=NULL) {
+        $return = $param;
+        if( is_null($return) ) { $return = !!!$this->result['on-error']; }
+        return $return;
+    }
     function getTimeFormat($param, $timestamp=NULL) {
         $return = '';
         if (is_null($timestamp)) { $timestamp = time(); }
+        if ( is_int($param) && $param < 1 ) { $this->setErrorStatus(TRUE); }
 
         if (FALSE) {
         } elseif ( is_int($param) ) {
