@@ -61,6 +61,15 @@ if (FALSE) {
     } elseif ( ! isset( $_REQUEST['act'] ) ) {
     } elseif ( $_REQUEST['act'] == 'uuid.get' ) {
         echo $rest->getEventUUID();
+    } elseif ( $_REQUEST['act'] == 'str.random.get' ) {
+        $params = [0, 0];
+        if ( isset($_REQUEST['chr']) && is_numeric($_REQUEST['chr']) ) {
+            $param1 = (int)$_REQUEST['chr'];
+        }
+        if ( isset($_REQUEST['len']) && is_numeric($_REQUEST['len']) ) {
+            $param2 = (int)$_REQUEST['len'];
+        }
+        echo $rest->getRandomStr($params[0], $params[1]);
     }
     
 }
