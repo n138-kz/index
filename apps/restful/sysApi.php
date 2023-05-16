@@ -17,8 +17,9 @@ class rest {
         $return = json_encode($return, JSON_UNESCAPED_SLASHES );
         return $return;
     }
-    function getTimeFormat($param, $timestamp=time()) {
+    function getTimeFormat($param, $timestamp=NULL) {
         $return = '';
+        if (is_null($timestamp)) { $timestamp = time(); } 
 
         if (FALSE) {
         } elseif ( is_int($param) ) {
