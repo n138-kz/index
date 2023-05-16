@@ -12,6 +12,11 @@ class rest {
             ],
         ];
     }
+    function getResult() {
+        $return = $this->result;
+        $return = json_encode($return, JSON_UNESCAPED_SLASHES );
+        echo $return;
+    }
     function getTimeFormat($param) {
         $this->result['issued_at'] = $this->getTimeFormat(28);
         $return = '';
