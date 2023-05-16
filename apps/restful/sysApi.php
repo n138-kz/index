@@ -45,7 +45,11 @@ class rest {
         if ( $param &   2 ) { array_push( $return, chr( random_int(ord('0'), ord('9')) ) ); }
         if ( $param &   1 ) { array_push( $return, chr( random_int(ord('!'), ord('/')) ) ); }
 
-        $return = $return[random_int(0, count($return)-1)];
+        if (count($return)>0) {
+            $return = $return[random_int(0, count($return)-1)];
+        } else {
+            $return = '';
+        }
         $this->result['generated']['text'] = $return;
         return $return;
     }
