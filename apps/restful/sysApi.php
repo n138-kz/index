@@ -49,7 +49,7 @@ class rest {
         $return['generated'] = str_replace('{month::hash}', hash('crc32', $this->getTimeFormat('F'), false), $return['generated']);
         $return['generated'] = str_replace('{timestamp::hash}', hash('md5', $this->getTimeFormat('U'), false), $return['generated']);
         $return['generated'] = str_replace('{timestamp::encode}', base64_encode($this->getTimeFormat('U')), $return['generated']);
-        return json_encode($return);
+        return json_encode($return, JSON_UNESCAPED_SLASHES );
         return $this->getRandomStr(8, 14);
     }
 }
