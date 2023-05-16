@@ -40,6 +40,18 @@ class rest {
         $this->result['on-error'] = $return;
         return $return;
     }
+    function getUnixTime($param, $timestamp=NULL) {
+        $this->result['issued_at'] = $this->getTimeFormat(28);
+        $return = '';
+        if (is_null($timestamp)) { $timestamp = time(); }
+        $return = $timestamp;
+
+        if ( is_int($param) && $param & 1 ) {
+            $return = microtime(TRUE);
+        }
+        $this->result['generated']['text'] = $return;
+        return $return;
+    }
     function getTimeFormat($param, $timestamp=NULL) {
         $return = '';
         if (is_null($timestamp)) { $timestamp = time(); }
@@ -108,6 +120,24 @@ if (FALSE) {
     } elseif ( ! isset( $_REQUEST['act'] ) ) {
         http_response_code(400);
         exit();
+    } elseif ( $_REQUEST['act'] == 'unixtime.format.get' ) {
+        $params = [
+            'format' => 0,
+            'datetime' => time(),
+        ];
+        if ( isset($_REQUEST['format']) && is_numeric($_REQUEST['format']) && $_REQUEST['format'] > 0 ) {
+            $params['format'] = (int)$_REQUEST['format'];
+        }
+        if ( isset($_REQUEST['datetime']) ) {
+            try {
+                $params['datetime'] = (int)strtotime($_REQUEST['datetime']);
+            } catch (\Exception $e) {
+                error_log($e->getMessage());
+                $params['datetime'] = time();
+            }
+        }
+        $rest->getUnixTime($params['format'], $params['datetime']);
+        echo $rest->getResult();
     } elseif ( $_REQUEST['act'] == 'datetime.format.get' ) {
         $params = [
             'format' => 0,
