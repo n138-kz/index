@@ -70,6 +70,12 @@ if (FALSE) {
             $param2 = (int)$_REQUEST['len'];
         }
         echo $rest->getRandomStr($params[0], $params[1]);
+    } elseif ( $_REQUEST['act'] == 'chr.random.get' ) {
+        $params = [0];
+        if ( isset($_REQUEST['chr']) && is_numeric($_REQUEST['chr']) ) {
+            $params[0] = (int)$_REQUEST['chr'];
+        }
+        echo $rest->getRandomChr($params[0]);
     }
     
 }
