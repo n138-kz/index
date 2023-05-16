@@ -41,7 +41,9 @@ class rest {
     function getEventUUID() {
         $return = [
             'issued_at' => $this->getTimeFormat(28),
-            'generated' => '{year::hash}-{month::hash}-{timestamp::hash}-{timestamp::encode}',
+            'generated' => [
+                'text' => '{year::hash}-{month::hash}-{timestamp::hash}-{timestamp::encode}'
+            ],
         ];
         $return['generated'] = str_replace('{year::hash}', hash('crc32', $this->getTimeFormat('Y'), false), $return['generated']);
         $return['generated'] = str_replace('{month::hash}', hash('crc32', $this->getTimeFormat('F'), false), $return['generated']);
