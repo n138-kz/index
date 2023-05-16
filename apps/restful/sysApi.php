@@ -81,11 +81,11 @@ class rest {
     }
     function getEventUUID() {
         $this->result['issued_at'] = $this->getTimeFormat(28);
-        $return = '{year::hash}-{month::hash}-{timestamp::hash}-{timestamp::encode}';
-        $return = str_replace('{year::hash}',        hash('crc32', $this->getTimeFormat('Y'), false), $return);
-        $return = str_replace('{month::hash}',       hash('crc32', $this->getTimeFormat('F'), false), $return);
-        $return = str_replace('{timestamp::hash}',   hash('md5',   $this->getTimeFormat('U'), false), $return);
-        $return = str_replace('{timestamp::encode}', base64_encode($this->getTimeFormat('U')       ), $return);
+        $return = '{year::hash:crc32}-{month::hash:crc32}-{timestamp::hash:md5}-{timestamp::hash:crc32}';
+        $return = str_replace('{year::hash:crc32}',      hash('crc32', $this->getTimeFormat('Y'), false), $return);
+        $return = str_replace('{month::hash:crc32}',     hash('crc32', $this->getTimeFormat('F'), false), $return);
+        $return = str_replace('{timestamp::hash:md5}',   hash('md5',   $this->getTimeFormat('U'), false), $return);
+        $return = str_replace('{timestamp::hash:crc32}', hash('crc32', $this->getTimeFormat('U'), false), $return);
         $this->result['generated']['text'] = $return;
         return $return;
     }
