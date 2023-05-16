@@ -105,7 +105,9 @@ if (FALSE) {
                 $params['datetime'] = time();
             }
         }
-        $rest->getTimeFormat($params['format'], $params['datetime']);
+        $rest->setCustomText(
+            $rest->getTimeFormat($params['format'], $params['datetime'])
+        );
         echo $rest->getResult();
     } elseif ( $_REQUEST['act'] == 'uuid.get' ) {
         $rest->getEventUUID();
