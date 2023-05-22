@@ -22,7 +22,7 @@ value is bit match.
 
 ## ?act=str.random.get&len=N&chr=N
 
-> Note: included inside process the chr
+> Note: included inside process the [chr](https://github.com/n138-kz/index#actchrrandomgetlennchrn)
 
 ### Request parametors
 
