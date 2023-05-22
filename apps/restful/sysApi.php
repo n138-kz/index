@@ -19,6 +19,7 @@ class rest {
                 'text' => '',
                 'blob' => '',
             ],
+            'refference_url' => '',
             'on-error' => FALSE,
         ];
     }
@@ -28,6 +29,7 @@ class rest {
         return $return;
     }
     function setCustomText($param) {
+        $this->result['refference_url'] = '';
         $this->result['issued_at'] = $this->getTimeFormat(28);
         $return = '';
         $return = trim($param);
@@ -41,6 +43,7 @@ class rest {
         return $return;
     }
     function getUnixTime($param, $timestamp=NULL) {
+        $this->result['refference_url'] = '';
         $this->result['issued_at'] = $this->getTimeFormat(28);
         $return = '';
         if (is_null($timestamp)) { $timestamp = time(); }
@@ -77,6 +80,7 @@ class rest {
         return $return;
     }
     function getRandomChr($param=0) {
+        $this->result['refference_url'] = '';
         $this->result['issued_at'] = $this->getTimeFormat(28);
         $return = [];
         if ( $param &   8 ) { array_push( $return, chr( random_int(ord('a'), ord('z')) ) ); }
@@ -93,6 +97,7 @@ class rest {
         return $return;
     }
     function getRandomStr($len=5, $chr=0) {
+        $this->result['refference_url'] = '';
         $this->result['issued_at'] = $this->getTimeFormat(28);
         $return = '';
         while (mb_strlen($return)<$len) {
@@ -103,6 +108,7 @@ class rest {
     }
     function getEventUUID() {
         usleep(1);
+        $this->result['refference_url'] = '';
         $this->result['issued_at'] = $this->getTimeFormat(28);
         $return = '{year::hash:crc32}-{month::hash:crc32}-{timestamp::hash:md5}-{timestamp::hash:crc32}';
         $return = str_replace('{year::hash:crc32}',      hash('crc32', $this->getTimeFormat('Y'),          false), $return);
