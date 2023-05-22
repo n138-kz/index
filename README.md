@@ -2,7 +2,7 @@
 
 ## ?act=chr.random.get&len=N&chr=N
 
-### Request parametors
+### Request parametors (chr.random.get)
 
 | query | value | note |
 | :-: | :- | :- |
@@ -24,7 +24,7 @@ value is bit match.
 
 > Note: included inside process the [chr](https://github.com/n138-kz/index#actchrrandomgetlennchrn)
 
-### Request parametors
+### Request parametors (str.random.get)
 
 | query | value | note |
 | :-: | :- | :- |
@@ -35,13 +35,13 @@ chr table is refference the chr.random.get
 
 ## ?act=uuid.get
 
-### Request parametors
+### Request parametors (uuid.get)
 
 No request parametors.
 
 ## ?act=unixtime.format.get
 
-### Request parametors
+### Request parametors (unixtime.format.get)
 
 | query | value | note |
 | :-: | :- | :- |
