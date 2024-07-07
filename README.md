@@ -1,4 +1,4 @@
-# sysApi reffernce
+# [sysApi reffernce](https://github.com/n138-kz/index)
 
 ## ?act=chr.random.get&len=N&chr=N
 
